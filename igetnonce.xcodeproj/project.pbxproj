@@ -137,6 +137,7 @@
 				87FBE64A1D2BCC0700FB5E05 /* Sources */,
 				87FBE64B1D2BCC0700FB5E05 /* Frameworks */,
 				87FBE64C1D2BCC0700FB5E05 /* CopyFiles */,
+				560D5A1521FF5E5B00553AEC /* Version bump */,
 			);
 			buildRules = (
 			);
@@ -176,6 +177,27 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		560D5A1521FF5E5B00553AEC /* Version bump */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Version bump";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sed -i '.bak' \"s/.*IGETNONCE_VERSION_COUNT.*/#define IGETNONCE_VERSION_COUNT \\\"$(git rev-list --count HEAD)\\\"/\" ./igetnonce/all.h 2>/dev/null || sed -i \"s/.*IGETNONCE_VERSION_COUNT.*/#define IGETNONCE_VERSION_COUNT \\\"$(git rev-list --count HEAD)\\\"/\" ./igetnonce/all.h 2>/dev/null\nsed -i '.bak' \"s/.*IGETNONCE_VERSION_SHA.*/#define IGETNONCE_VERSION_SHA \\\"$(git rev-parse HEAD)\\\"/\" ./igetnonce/all.h 2>/dev/null || sed -i \"s/.*IGETNONCE_VERSION_SHA.*/#define IGETNONCE_VERSION_SHA \\\"$(git rev-parse HEAD)\\\"/\" ./igetnonce/all.h 2>/dev/null\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		87FBE64A1D2BCC0700FB5E05 /* Sources */ = {
