@@ -21,8 +21,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef IDEVICERESTORE_DFU_H
-#define IDEVICERESTORE_DFU_H
+#ifndef DFU_H
+#define DFU_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,13 +43,13 @@ int dfu_check_mode(struct idevicerestore_client_t* client, int* mode);
 const char* dfu_check_hardware_model(struct idevicerestore_client_t* client);
 int dfu_get_cpid(struct idevicerestore_client_t* client, unsigned int* cpid);
 int dfu_get_ecid(struct idevicerestore_client_t* client, uint64_t* ecid);
+int dfu_is_image4_supported(struct idevicerestore_client_t* client);
 int dfu_get_ap_nonce(struct idevicerestore_client_t* client, unsigned char** nonce, int* nonce_size);
 int dfu_get_sep_nonce(struct idevicerestore_client_t* client, unsigned char** nonce, int* nonce_size);
 int dfu_enter_recovery(struct idevicerestore_client_t* client, plist_t build_identity);
-
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* dfu_h */

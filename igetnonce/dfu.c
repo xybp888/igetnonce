@@ -133,8 +133,7 @@ const char* dfu_check_hardware_model(struct idevicerestore_client_t* client) {
 	return device->hardware_model;
 }
 
-int dfu_send_buffer(struct idevicerestore_client_t* client, unsigned char* buffer, unsigned int size)
-{
+int dfu_send_buffer(struct idevicerestore_client_t* client, unsigned char* buffer, unsigned int size) {
 	irecv_error_t err = 0;
 
 	info("Sending data (%d bytes)...\n", size);
@@ -147,8 +146,6 @@ int dfu_send_buffer(struct idevicerestore_client_t* client, unsigned char* buffe
 
 	return 0;
 }
-
-
 
 int dfu_get_cpid(struct idevicerestore_client_t* client, unsigned int* cpid) {
 	if(client->dfu == NULL) {
@@ -184,8 +181,7 @@ int dfu_get_ecid(struct idevicerestore_client_t* client, uint64_t* ecid) {
 	return 0;
 }
 
-int dfu_is_image4_supported(struct idevicerestore_client_t* client)
-{
+int dfu_is_image4_supported(struct idevicerestore_client_t* client) {
 	if(client->dfu == NULL) {
 		if (dfu_client_new(client) < 0) {
 			return 0;

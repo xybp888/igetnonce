@@ -222,7 +222,6 @@ void print_progress_bar(double progress) {
 }
 
 #define GET_RAND(min, max) ((rand() % (max - min)) + min)
-
 char *generate_guid(void)
 {
 	char *guid = (char *) malloc(sizeof(char) * 37);
@@ -241,4 +240,3 @@ char *generate_guid(void)
 	guid[36] = '\0';
 	return guid;
 }
-

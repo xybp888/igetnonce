@@ -8,7 +8,12 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <libirecovery.h>
+
 #include "idevicerestore.h"
+#include "normal.h"
+#include "recovery.h"
+#include "dfu.h"
 #include "common.h"
 #include "all.h"
 
@@ -54,9 +59,9 @@ int main(int argc, const char * argv[]) {
     if (argc >= 3){
         if (strncmp(argv[1],"-e",2) == 0){
             if ((client->ecid = parseECID(argv[2])) == 0){
-                printf("Error: can't parse ecid \"%s\", continuing without ecid\n",argv[2]);
+                printf("Error: can't parse ECID \"%s\", continuing without ecid\n",argv[2]);
             }else{
-                printf("User specified ecid=%llx\n",client->ecid);
+                printf("User specified ECID=%llx\n",client->ecid);
             }
         }
     }
@@ -73,7 +78,6 @@ int main(int argc, const char * argv[]) {
     }
     
     info("Identified device as %s, %s ", client->device->hardware_model, client->device->product_type);
-    
     
     switch (client->mode->index) {
         case MODE_NORMAL:
@@ -102,16 +106,16 @@ int main(int argc, const char * argv[]) {
         error("ERROR: Unable to find device ECID\n");
         return -1;
     }
-    info("ecid=%llx\n",client->ecid);
+    info("ECID=%llx\n",client->ecid);
     
     unsigned char* nonce = NULL;
     int nonce_size = 0;
     
     if (get_ap_nonce(client, &nonce, &nonce_size) < 0) {
-        error("NOTE: Unable to get nonce from device\n");
+        error("NOTE: Unable to get ApNonce from device\n");
     }
     if (get_sep_nonce(client, &nonce, &nonce_size) < 0) {
-        error("NOTE: Unable to get nonce from device\n");
+        error("NOTE: Unable to get SepNonce from device\n");
     }
     
     return 0;

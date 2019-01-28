@@ -44,12 +44,12 @@ int recovery_check_mode(struct idevicerestore_client_t* client);
 int recovery_client_new(struct idevicerestore_client_t* client);
 void recovery_client_free(struct idevicerestore_client_t* client);
 int recovery_get_ecid(struct idevicerestore_client_t* client, uint64_t* ecid);
+int recovery_is_image4_supported(struct idevicerestore_client_t* client);
 int recovery_get_ap_nonce(struct idevicerestore_client_t* client, unsigned char** nonce, int* nonce_size);
 int recovery_get_sep_nonce(struct idevicerestore_client_t* client, unsigned char** nonce, int* nonce_size);
-
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* recovery_h */

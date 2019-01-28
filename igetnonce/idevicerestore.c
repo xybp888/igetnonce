@@ -90,7 +90,6 @@ void idevicerestore_client_free(struct idevicerestore_client_t* client)
 	free(client);
 }
 
-
 int check_mode(struct idevicerestore_client_t* client) {
 	int mode = MODE_UNKNOWN;
 	int dfumode = MODE_UNKNOWN;
@@ -149,6 +148,31 @@ const char* check_hardware_model(struct idevicerestore_client_t* client) {
 	}
 
 	return hw_model;
+}
+
+int is_image4_supported(struct idevicerestore_client_t* client) {
+    int res = 0;
+    int mode = MODE_UNKNOWN;
+    
+    if (client->mode) {
+        mode = client->mode->index;
+    }
+    
+    switch (mode) {
+        case MODE_NORMAL:
+            res = normal_is_image4_supported(client);
+            break;
+        case MODE_DFU:
+            res = dfu_is_image4_supported(client);
+            break;
+        case MODE_RECOVERY:
+            res = recovery_is_image4_supported(client);
+            break;
+        default:
+            error("ERROR: Device is in an invalid state\n");
+            return 0;
+    }
+    return res;
 }
 
 int get_ecid(struct idevicerestore_client_t* client, uint64_t* ecid) {
@@ -263,7 +287,6 @@ int get_sep_nonce(struct idevicerestore_client_t* client, unsigned char** nonce,
 			return -1;
 		}
 		break;
-
 	default:
 		info("failed\n");
 		error("ERROR: Device is in an invalid state\n");
